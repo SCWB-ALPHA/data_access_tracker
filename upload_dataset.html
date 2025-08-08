@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main role="main" class="container my-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card shadow-sm">
+                <div class="card-header bg-success text-white">
+                    <h4 class="mb-0">Upload New Dataset</h4>
+                </div>
+                <div class="card-body">
+                    <form action="{{ url_for('upload_dataset') }}" method="post" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Dataset Name</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Description</label>
+                            <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="file" class="form-label">Choose File</label>
+                            <input class="form-control" type="file" id="file" name="file" required>
+                        </div>
+                        <button type="submit" class="btn btn-success">Upload Dataset</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

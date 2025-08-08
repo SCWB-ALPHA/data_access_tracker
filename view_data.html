@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main role="main" class="container my-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card shadow-sm">
+                <div class="card-header bg-success text-white">
+                    <h4 class="mb-0">Data Access</h4>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted">Select a dataset to view its contents. If you don't have access, you will be prompted to submit a request.</p>
+                    
+                    <form method="get" action="{{ url_for('view_data') }}" class="mb-4">
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="dataset_name" placeholder="Enter dataset name (e.g., Q3_Sales_Data)" required value="{{ dataset_name if dataset_name }}">
+                            <button type="submit" class="btn btn-success">View Data</button>
+                        </div>
+                    </form>
+                    
+                    {% if data_content %}
+                        <div class="mt-4 p-4 border rounded bg-light">
+                            <h5>Dataset: {{ dataset_name }}</h5>
+                            <p class="mb-0">{{ data_content }}</p>
+                        </div>
+                    {% elif dataset_name and not has_access %}
+                        <div class="mt-4 p-4 border rounded bg-warning-subtle">
+                            <h5 class="text-danger">Access Denied</h5>
+                            <p>You do not have an approved request to view the dataset: <strong>{{ dataset_name }}</strong>.</p>
+                            <a href="{{ url_for('request_access') }}" class="btn btn-danger">Submit an Access Request</a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

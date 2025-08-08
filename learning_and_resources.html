@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% block title %}Learning & Resources{% endblock %}
+
+{% block content %}
+<main role="main" class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="text-center mb-5">
+                <h1 class="display-4 fw-bold">Learning & Resources</h1>
+                <p class="lead text-muted">A guide to using the Data Access Tracker effectively.</p>
+            </div>
+
+            <!-- Getting Started Section -->
+            <div class="card shadow-sm mb-5">
+                <div class="card-header bg-dark text-white">
+                    <h4 class="mb-0">Getting Started</h4>
+                </div>
+                <div class="card-body">
+                    <p>Welcome to the Data Access Tracker! This platform is designed to help you and your team keep a centralized, auditable log of all data access events. Follow these simple steps to get started:</p>
+                    <ol>
+                        <li><strong>Log In:</strong> Use your provided credentials to log in to the system.</li>
+                        <li><strong>Navigate to your Dashboard:</strong> As a user, your dashboard is your home base. Here you can see your profile and recent activity.</li>
+                        <li><strong>Log Data Access:</strong> Click the "<i class="fas fa-plus-circle"></i> Log Access" button on your dashboard to record a new data access event. Fill out the form with details like the dataset name, purpose, and date.</li>
+                        <li><strong>View Your History:</strong> All your logged access events will be visible on your dashboard and a dedicated "My Logs" page.</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- FAQs Section (Accordion) -->
+            <div class="card shadow-sm mb-5">
+                <div class="card-header bg-dark text-white">
+                    <h4 class="mb-0">Frequently Asked Questions</h4>
+                </div>
+                <div class="card-body">
+                    <div class="accordion" id="faqAccordion">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    What is the purpose of this application?
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    The Data Access Tracker is a centralized system for logging and monitoring data access, ensuring a clear and compliant record of who accessed what data, and for what purpose.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    Who can see my data access logs?
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Your individual access logs are visible to you on your dashboard. Administrators have access to a complete history of all logs across the organization for auditing purposes.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    How do I request access to a new dataset?
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    For now, dataset access requests are not handled within this system. You should follow your company's standard procedure for requesting new data access.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- External Resources Section -->
+            <div class="card shadow-sm mb-5">
+                <div class="card-header bg-dark text-white">
+                    <h4 class="mb-0">External Resources</h4>
+                </div>
+                <div class="card-body">
+                    <p>
+                        For further information on data governance and security best practices, please refer to the following external resources:
+                    </p>
+                    <ul>
+                        <li><a href="#" target="_blank">Company Data Governance Policy</a> <i class="fas fa-external-link-alt text-muted"></i></li>
+                        <li><a href="#" target="_blank">IT Support & Helpdesk</a> <i class="fas fa-external-link-alt text-muted"></i></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</main>
+{% endblock %}

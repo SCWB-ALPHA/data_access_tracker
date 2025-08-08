@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main role="main" class="container my-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="fw-bold text-success">Manage Datasets</h3>
+        <a href="{{ url_for('upload_dataset') }}" class="btn btn-success">
+            <i class="fas fa-plus-circle me-2"></i>Upload New Dataset
+        </a>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    {% if datasets %}
+                        <div class="table-responsive">
+                            <table class="table table-hover mb-0">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Description</th>
+                                        <th scope="col">File Path</th>
+                                        <th scope="col">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for dataset in datasets %}
+                                        <tr>
+                                            <td>{{ dataset.name }}</td>
+                                            <td>{{ dataset.description }}</td>
+                                            <td>{{ dataset.file_path or 'N/A' }}</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-danger">
+                                                    <i class="fas fa-trash-alt"></i> Delete
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% else %}
+                        <div class="text-center p-4">
+                            <p class="text-muted mb-0">No datasets have been uploaded yet.</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

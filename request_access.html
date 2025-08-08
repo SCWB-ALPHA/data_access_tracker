@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %}Request Access{% endblock %}
+
+{% block content %}
+<main role="main" class="container my-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card shadow-sm">
+                <div class="card-header bg-success text-white">
+                    <h4 class="mb-0">Request Access to a Dataset</h4>
+                </div>
+                <div class="card-body">
+                    <form action="{{ url_for('request_access') }}" method="post">
+                        <div class="mb-3">
+                            <label for="dataset_name" class="form-label">Select Dataset</label>
+                            <input type="text" class="form-control" id="dataset_name" name="dataset_name" list="dataset_suggestions" placeholder="Start typing to see suggestions..." required>
+                            <datalist id="dataset_suggestions" data-api-url="{{ url_for('get_datasets_api') }}"></datalist>
+                        </div>
+                        <div class="mb-3">
+                            <label for="purpose" class="form-label">Purpose of Access</label>
+                            <textarea class="form-control" id="purpose" name="purpose" rows="4" required placeholder="Explain why you need access to this dataset..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-success">Submit Request</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const datasetInput = document.getElementById('dataset_name');
+        const datalist = document.getElementById('dataset_suggestions');
+        // Get the API URL from the data-api-url attribute
+        const apiUrl = datalist.dataset.apiUrl;
+
+        // Function to fetch dataset names and populate datalist
+        async function fetchDatasetNames() {
+            try {
+                // Use the dynamically fetched API URL
+                const response = await fetch(apiUrl);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const datasetNames = await response.json();
+                
+                datalist.innerHTML = ''; // Clear previous options
+                datasetNames.forEach(name => {
+                    const option = document.createElement('option');
+                    option.value = name;
+                    datalist.appendChild(option);
+                });
+            } catch (error) {
+                console.error("Error fetching dataset names:", error);
+                // Optionally, display a user-friendly message
+            }
+        }
+
+        // Fetch dataset names when the page loads
+        fetchDatasetNames();
+    });
+</script>
+{% endblock %}
+

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}Help & Support{% endblock %}
+
+{% block content %}
+<main role="main" class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card p-4 shadow-sm">
+                <h2 class="text-center mb-4">Help & Support</h2>
+                <hr>
+                
+                <p class="lead text-center text-muted">
+                    If you need assistance, please refer to the resources below. For technical issues, please contact your administrator.
+                </p>
+
+                <h3 class="mt-4">How to Use This Application</h3>
+                <p>
+                    This application is designed to help you track and manage access to sensitive datasets. As a user, you can view the status of your data access requests and see a history of your approved access logs.
+                </p>
+                <p>
+                    Administrators have additional privileges, including managing user accounts, approving or denying access requests, and auditing access history.
+                </p>
+                
+                <h3 class="mt-4">Troubleshooting</h3>
+                <p>
+                    If you are experiencing issues, try these steps:
+                    <ul>
+                        <li>Ensure you are logged in with the correct account.</li>
+                        <li>Clear your browser's cache and cookies.</li>
+                        <li>Contact your system administrator if the issue persists.</li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

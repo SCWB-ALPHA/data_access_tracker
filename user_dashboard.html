@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block title %}User Dashboard{% endblock %}
+
+{% block content %}
+<main role="main" class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="text-center mb-5">
+                <h1 class="display-4 fw-bold">Welcome, {{ current_user.username }}!</h1>
+                <p class="lead text-muted">Your personal dashboard for tracking data access.</p>
+            </div>
+            
+            <!-- User Profile Card -->
+            <div class="card shadow-sm mb-5">
+                <div class="card-header bg-dark text-white">
+                    <h4 class="mb-0">My Profile</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="mb-1"><strong>Username:</strong> {{ current_user.username }}</p>
+                            <p class="mb-1"><strong>Email:</strong> {{ current_user.email }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="mb-1"><strong>Department:</strong> {{ current_user.department }}</p>
+                            <p class="mb-1"><strong>Role:</strong> {{ current_user.role | capitalize }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Log New Access Section -->
+            <div class="card shadow-sm mb-5 text-center">
+                <div class="card-body p-4">
+                    <h3 class="card-title">Log a New Data Access</h3>
+                    <p class="card-text text-muted">
+                        Have you recently accessed a dataset? Record your access details here to keep a centralized log.
+                    </p>
+                    <a href="{{ url_for('log_data') }}" class="btn btn-primary btn-lg mt-3" role="button">
+                        <i class="fas fa-plus-circle me-2"></i>Log Access
+                    </a>
+                </div>
+            </div>
+
+            <!-- Recent Access History Section -->
+            <div class="card shadow-sm">
+                <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+                    <h4 class="mb-0">Recent Access History</h4>
+                    <a href="{{ url_for('user_logs') }}" class="btn btn-sm btn-outline-light">View All</a>
+                </div>
+                <div class="card-body p-4">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Dataset Name</th>
+                                    <th scope="col">Purpose</th>
+                                    <th scope="col">Timestamp</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% if logs %}
+                                    {% for log in logs %}
+                                        <tr>
+                                            <td>{{ log.dataset_name }}</td>
+                                            <td>{{ log.purpose }}</td>
+                                            <td>{{ log.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                {% else %}
+                                    <tr>
+                                        <td colspan="3" class="text-center text-muted">No recent access logs found.</td>
+                                    </tr>
+                                {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
