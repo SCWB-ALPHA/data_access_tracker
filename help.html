@@ -1,38 +1,85 @@
-{% extends 'base.html' %}
-
-{% block title %}Help & Support{% endblock %}
-
+{% extends "base.html" %}
 {% block content %}
-<main role="main" class="container my-5">
-    <div class="row justify-content-center">
-        <div class="col-md-10">
-            <div class="card p-4 shadow-sm">
-                <h2 class="text-center mb-4">Help & Support</h2>
-                <hr>
-                
-                <p class="lead text-center text-muted">
-                    If you need assistance, please refer to the resources below. For technical issues, please contact your administrator.
-                </p>
+<div class="card card-dark">
+  <div class="card-body">
+    <h1 class="h3 mb-3">Help & Common Questions</h1>
+    <p class="soft mb-4">Simple answers to get you moving quickly.</p>
 
-                <h3 class="mt-4">How to Use This Application</h3>
-                <p>
-                    This application is designed to help you track and manage access to sensitive datasets. As a user, you can view the status of your data access requests and see a history of your approved access logs.
-                </p>
-                <p>
-                    Administrators have additional privileges, including managing user accounts, approving or denying access requests, and auditing access history.
-                </p>
-                
-                <h3 class="mt-4">Troubleshooting</h3>
-                <p>
-                    If you are experiencing issues, try these steps:
-                    <ul>
-                        <li>Ensure you are logged in with the correct account.</li>
-                        <li>Clear your browser's cache and cookies.</li>
-                        <li>Contact your system administrator if the issue persists.</li>
-                    </ul>
-                </p>
-            </div>
+    <div class="accordion" id="faq">
+      <div class="accordion-item bg-transparent text-light">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q1">
+            How do I request access to a dataset?
+          </button>
+        </h2>
+        <div id="q1" class="accordion-collapse collapse" data-bs-parent="#faq">
+          <div class="accordion-body">
+            Go to <strong>User Dashboard</strong> → choose a dataset → state your <em>purpose</em> → submit.
+            You’ll see your request tracked as pending/approved/denied.
+          </div>
         </div>
+      </div>
+
+      <div class="accordion-item bg-transparent text-light">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q2">
+            How will I know if I’m approved?
+          </button>
+        </h2>
+        <div id="q2" class="accordion-collapse collapse" data-bs-parent="#faq">
+          <div class="accordion-body">
+            Check your <strong>User Dashboard</strong>. Once approved, you can view/download the dataset from
+            <strong>View Data</strong>. All access is automatically logged with a timestamp and stated purpose.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item bg-transparent text-light">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q3">
+            What is the audit log and who can see it?
+          </button>
+        </h2>
+        <div id="q3" class="accordion-collapse collapse" data-bs-parent="#faq">
+          <div class="accordion-body">
+            The audit log records <em>who</em> accessed <em>what</em>, <em>when</em>, and <em>why</em>.
+            Only <strong>Admins</strong> can view/export the full log from <strong>History</strong>.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item bg-transparent text-light">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q4">
+            What if a file is missing or I get an error?
+          </button>
+        </h2>
+        <div id="q4" class="accordion-collapse collapse" data-bs-parent="#faq">
+          <div class="accordion-body">
+            If a file can’t be found, the app shows a clear error. Contact an Admin to re-upload the dataset or add inline content.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item bg-transparent text-light">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q5">
+            Privacy basics: what should I write in “purpose”?
+          </button>
+        </h2>
+        <div id="q5" class="accordion-collapse collapse" data-bs-parent="#faq">
+          <div class="accordion-body">
+            Use plain language. Example: “Quarterly KPI report for Finance, no redistribution.” 
+            Avoid sensitive details in the purpose text.
+          </div>
+        </div>
+      </div>
     </div>
-</main>
+
+    <div class="mt-4">
+      <a class="btn btn-accent" href="{{ url_for('user_dashboard') }}"><i class="bi bi-speedometer2 me-1"></i> Go to Dashboard</a>
+      <a class="btn btn-outline-light" href="{{ url_for('view_data') }}"><i class="bi bi-eye me-1"></i> View Data</a>
+    </div>
+  </div>
+</div>
 {% endblock %}
