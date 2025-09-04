@@ -1,17 +1,24 @@
+@"
 # Python
 __pycache__/
 *.pyc
-*.pyo
-*.pyd
-.Python
-env/
+
+# Virtual envs
 venv/
-*.env
 .venv/
 
-# Flask
-instance/
+# Secrets & local settings
+.env
+*.sqlite
+instance/*.db
 
-# Database
+# Local databases at root (legacy)
 *.db
-*.sqlite3
+
+# Uploads (empty folder tracked with .gitkeep)
+uploads/*
+
+# OS/editor junk
+.DS_Store
+Thumbs.db
+"@ | Set-Content .gitignore
